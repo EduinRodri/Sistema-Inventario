@@ -58,6 +58,15 @@ public class MainStoreView {
         frame.add(topPanel, BorderLayout.NORTH);
         frame.add(mainPanel, BorderLayout.CENTER);
 
+        cerrarSesionMenuItem.addActionListener(e -> {
+            if (callback == null) {
+                System.exit(0);
+            } else {
+                callback.ejecutar("cerrar");
+                frame.dispose();
+            }
+        });
+
         // Hacer visible la interfaz
         frame.setVisible(true);
     }

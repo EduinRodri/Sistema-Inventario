@@ -69,7 +69,14 @@ public class Empleado extends JFrame {
         // Agregar el panel principal
         mainPanel.add(contentPanel, BorderLayout.CENTER);
         add(mainPanel);
-
+        cerrarSesionMenuItem.addActionListener(e -> {
+            if (callback == null) {
+                System.exit(0);
+            } else {
+                callback.ejecutar("cerrar");
+                this.dispose();
+            }
+        });
         setVisible(true);
     }
 
