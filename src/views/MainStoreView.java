@@ -58,6 +58,11 @@ public class MainStoreView {
         frame.add(topPanel, BorderLayout.NORTH);
         frame.add(mainPanel, BorderLayout.CENTER);
 
+        carritoMenuItem.addActionListener(e -> {
+            CarritoDeCompras carrito = new CarritoDeCompras();
+            
+        });
+
         cerrarSesionMenuItem.addActionListener(e -> {
             if (callback == null) {
                 System.exit(0);

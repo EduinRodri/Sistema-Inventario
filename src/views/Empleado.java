@@ -61,7 +61,6 @@ public class Empleado extends JFrame {
         contentPanel.add(bienvenidaLabel, new GridBagConstraints());
 
         // Acción de botones del menú
-        cerrarSesionMenuItem.addActionListener(e -> cerrarSesion());
         historialVentasMenuItem.addActionListener(e -> mostrarHistorialVentas());
         inventarioMenuItem.addActionListener(e -> mostrarInventario());
         venderMenuItem.addActionListener(e -> iniciarVenta());
@@ -80,31 +79,19 @@ public class Empleado extends JFrame {
         setVisible(true);
     }
 
-    // Método: Cerrar Sesión
-    private void cerrarSesion() {
-        int confirm = JOptionPane.showConfirmDialog(this, "¿Está seguro de que desea cerrar sesión?", "Confirmar", JOptionPane.YES_NO_OPTION);
-        if (confirm == JOptionPane.YES_OPTION) {
-            dispose(); // Cierra la ventana actual
-            // Aquí puedes redirigir a la pantalla de login si es necesario
-        }
-    }
-
     // Método: Mostrar Historial de Ventas
     private void mostrarHistorialVentas() {
-        JOptionPane.showMessageDialog(this, "Función para mostrar el historial de ventas (por implementar).", "Historial de Ventas", JOptionPane.INFORMATION_MESSAGE);
-        // Aquí puedes abrir una nueva ventana para el historial de ventas
+        HistorialVentas ventas = new HistorialVentas(null);
     }
 
     // Método: Mostrar Inventario
     private void mostrarInventario() {
-        JOptionPane.showMessageDialog(this, "Función para mostrar el inventario (por implementar).", "Inventario", JOptionPane.INFORMATION_MESSAGE);
-        // Aquí puedes abrir una nueva ventana para el inventario
+        Inventario inventario = new Inventario(null);
     }
 
     // Método: Iniciar Venta
     private void iniciarVenta() {
-        JOptionPane.showMessageDialog(this, "Función para iniciar una venta (por implementar).", "Vender", JOptionPane.INFORMATION_MESSAGE);
-        // Aquí puedes abrir una ventana para gestionar ventas
+        Vender vender = new Vender(null);
     }
 
     // Método principal para probar la interfaz

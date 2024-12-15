@@ -78,6 +78,10 @@ public class Finanzas extends JFrame {
         // Añadir el panel principal al JFrame
         add(mainPanel);
 
+        cerrarButton.addActionListener(e -> {
+            dispose();
+        });
+
         setVisible(true);
     }
 
