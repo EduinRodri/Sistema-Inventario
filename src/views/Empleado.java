@@ -1,7 +1,7 @@
 package views;
 
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 public class Empleado extends JFrame {
 
