@@ -1,11 +1,12 @@
 package views;
 
+import callbacks.callbackString;
 import java.awt.*;
 import javax.swing.*;
 
 public class RegistrarEmpleado extends JFrame {
 
-    public RegistrarEmpleado() {
+    public RegistrarEmpleado(callbackString callback) {
         // Configuración del JFrame
         setTitle("Registrar Empleado");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -103,6 +104,6 @@ public class RegistrarEmpleado extends JFrame {
 
     // Método para probar la clase de forma aislada
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(RegistrarEmpleado::new);
+        SwingUtilities.invokeLater(() -> new RegistrarEmpleado(null));
     }
 }

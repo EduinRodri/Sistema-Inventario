@@ -1,12 +1,13 @@
 package views;
 
+import callbacks.callbackString;
+import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 
 public class Inventario extends JFrame {
 
-    public Inventario() {
+    public Inventario(callbackString callback) {
         // Configuración del JFrame
         setTitle("Gestión de Inventario");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -134,6 +135,6 @@ public class Inventario extends JFrame {
 
     // Método para probar la clase de forma aislada
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(Inventario::new);
+        SwingUtilities.invokeLater(() -> new Inventario(null));
     }
 }

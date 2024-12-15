@@ -1,12 +1,13 @@
 package views;
 
+import callbacks.callbackString;
+import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 
 public class HistorialVentas extends JFrame {
 
-    public HistorialVentas() {
+    public HistorialVentas(callbackString callback) {
         // Configuración del JFrame
         setTitle("Historial de Ventas");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -54,6 +55,6 @@ public class HistorialVentas extends JFrame {
 
     // Método principal para probar la interfaz
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(HistorialVentas::new);
+        SwingUtilities.invokeLater(() -> new HistorialVentas(null));
     }
 }

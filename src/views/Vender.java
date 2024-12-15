@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
+import callbacks.callbackString;
+
 public class Vender extends JFrame {
     
     // Elementos de la interfaz
@@ -12,7 +14,7 @@ public class Vender extends JFrame {
     private JTextField cantidadField, precioUnitarioField, totalVentaField;
     private JButton registrarVentaButton;
 
-    public Vender() {
+    public Vender(callbackString callback) {
         // Configuración del JFrame
         setTitle("Vender Producto");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -143,6 +145,6 @@ public class Vender extends JFrame {
 
     // Método principal para probar la interfaz
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(Vender::new);
+        SwingUtilities.invokeLater(() -> new Vender(null));
     }
 }

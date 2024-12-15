@@ -1,12 +1,13 @@
 package views;
 
+import callbacks.callbackString;
+import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 
 public class Finanzas extends JFrame {
 
-    public Finanzas() {
+    public Finanzas(callbackString callback) {
         // Configuración del JFrame
         setTitle("Gestión de Finanzas");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -82,6 +83,6 @@ public class Finanzas extends JFrame {
 
     // Método para probar la clase de forma aislada
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(Finanzas::new);
+        SwingUtilities.invokeLater(() -> new Finanzas(null));
     }
 }

@@ -1,11 +1,12 @@
 package views;
 
-import javax.swing.*;
+import callbacks.callbackString;
 import java.awt.*;
+import javax.swing.*;
 
 public class MainStoreView {
 
-    public MainStoreView() {
+    public MainStoreView(callbackString callback) {
         // Crear la ventana principal
         JFrame frame = new JFrame("Panadería Esquina del Tío");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

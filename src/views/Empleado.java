@@ -1,11 +1,12 @@
 package views;
 
+import callbacks.callbackString;
 import java.awt.*;
 import javax.swing.*;
 
 public class Empleado extends JFrame {
 
-    public Empleado() {
+    public Empleado(callbackString callback) {
         // Configuración del JFrame
         setTitle("Panel del Empleado");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -84,6 +85,6 @@ public class Empleado extends JFrame {
 
     // Método principal para probar la interfaz
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(Empleado::new);
+        SwingUtilities.invokeLater(() -> new Empleado(null));
     }
 }

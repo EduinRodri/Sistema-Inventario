@@ -1,5 +1,6 @@
 package views;
 
+import callbacks.callbackString;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -8,7 +9,7 @@ public class Usuarios extends JFrame {
     private JTable usuariosTable;
     private DefaultTableModel tableModel;
 
-    public Usuarios() {
+    public Usuarios(callbackString callback) {
         // Configuración del JFrame
         setTitle("Gestión de Usuarios");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -155,6 +156,6 @@ public class Usuarios extends JFrame {
 
     // Método para probar la clase de forma aislada
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(Usuarios::new);
+        SwingUtilities.invokeLater(() -> new Usuarios(null));
     }
 }

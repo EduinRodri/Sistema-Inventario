@@ -1,12 +1,15 @@
 package views;
 
 import javax.swing.*;
+
+import callbacks.callbackString;
+
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 public class Registrarse {
-    public Registrarse () {
+    public Registrarse (callbackString callback) {
         // Crear ventana principal
         JFrame frame = new JFrame("Registro");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
