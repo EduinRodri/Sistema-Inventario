@@ -9,6 +9,7 @@ import javax.swing.*;
 
 public class Registrarse {
     ArrayList<String> params = new ArrayList<>();
+    
     public Registrarse (CallbackArryList callback) {
         // Crear ventana principal
         JFrame frame = new JFrame("Registro");
@@ -17,17 +18,24 @@ public class Registrarse {
         frame.setLocationRelativeTo(null); // Centrar ventana
         frame.setResizable(false);
 
+        // Establecer el icono de la aplicación
+        Image icon = Toolkit.getDefaultToolkit().getImage("src/image/logo.png");
+        frame.setIconImage(icon);
+
         // Panel principal
         JPanel mainPanel = new JPanel(new BorderLayout());
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        mainPanel.setBackground(new Color(245, 245, 220)); // Fondo beige
 
         // Título
         JLabel titleLabel = new JLabel("Registrarse", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        titleLabel.setForeground(new Color(139, 69, 19)); // Texto marrón oscuro
         mainPanel.add(titleLabel, BorderLayout.NORTH);
 
         // Panel de formulario
         JPanel formPanel = new JPanel(new GridLayout(6, 1, 10, 10)); // 6 filas para campos y checkbox
+        formPanel.setBackground(new Color(245, 245, 220)); // Fondo beige
 
         // Campos de entrada
         JTextField userField = new JTextField();
@@ -41,6 +49,8 @@ public class Registrarse {
 
         // Checkbox para mostrar contraseña
         JCheckBox showPasswordCheckBox = new JCheckBox("Mostrar Contraseña");
+        showPasswordCheckBox.setBackground(new Color(245, 245, 220)); // Fondo beige
+        showPasswordCheckBox.setForeground(new Color(139, 69, 19)); // Texto marrón oscuro
 
         // Botón Registrarse
         JButton registerButton = new JButton("Registrarse");
@@ -144,5 +154,10 @@ public class Registrarse {
                 }
             }
         });
+    }
+
+    // Método principal para probar la clase de forma aislada
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new Registrarse(null));
     }
 }

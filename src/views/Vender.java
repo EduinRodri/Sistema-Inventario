@@ -22,28 +22,40 @@ public class Vender extends JFrame {
         setLocationRelativeTo(null); // Centrar ventana
         setResizable(false);
 
-        // Panel principal con un BorderLayout
+        // Establecer el icono de la aplicación
+        Image icon = Toolkit.getDefaultToolkit().getImage("src/image/logo.png");
+        setIconImage(icon);
+
+        // Panel principal con GridBagLayout
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10); // Margen alrededor de cada componente
+        mainPanel.setBackground(new Color(245, 245, 220)); // Fondo beige
 
         // Crear los componentes
         JLabel productoLabel = new JLabel("Seleccionar Producto:");
         comboProductos = new JComboBox<>(new String[] {"Producto A", "Producto B", "Producto C"});
+        productoLabel.setForeground(new Color(139, 69, 19)); // Texto marrón oscuro
+        comboProductos.setBackground(Color.WHITE);
+        comboProductos.setForeground(Color.BLACK);
         
         JLabel cantidadLabel = new JLabel("Cantidad:");
         cantidadField = new JTextField(10);
+        cantidadLabel.setForeground(new Color(139, 69, 19)); // Texto marrón oscuro
 
         JLabel precioUnitarioLabel = new JLabel("Precio Unitario:");
         precioUnitarioField = new JTextField(10);
         precioUnitarioField.setEditable(false);  // No editable, solo visualización
+        precioUnitarioLabel.setForeground(new Color(139, 69, 19)); // Texto marrón oscuro
 
         JLabel totalLabel = new JLabel("Total de la Venta:");
         totalVentaField = new JTextField(10);
         totalVentaField.setEditable(false);  // No editable, se calcula automáticamente
+        totalLabel.setForeground(new Color(139, 69, 19)); // Texto marrón oscuro
 
         registrarVentaButton = new JButton("Registrar Venta");
+        styleButton(registrarVentaButton, new Color(34, 139, 34)); // Botón verde
 
         // Añadir componentes al panel con GridBagLayout
         gbc.gridx = 0; gbc.gridy = 0;
@@ -81,8 +93,10 @@ public class Vender extends JFrame {
 
         // Panel para el título
         JPanel titlePanel = new JPanel();
+        titlePanel.setBackground(new Color(245, 245, 220)); // Fondo beige
         JLabel titleLabel = new JLabel("Registrar Venta", JLabel.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        titleLabel.setForeground(new Color(139, 69, 19)); // Texto marrón oscuro
         titlePanel.add(titleLabel);
 
         // Añadir el título y el panel principal
@@ -141,6 +155,15 @@ public class Vender extends JFrame {
         // Limpiar campos después de registrar la venta
         cantidadField.setText("");
         totalVentaField.setText("0.00");
+    }
+
+    // Método para estilizar botones
+    private static void styleButton(JButton button, Color color) {
+        button.setBackground(color);
+        button.setForeground(Color.WHITE);
+        button.setFocusPainted(false);
+        button.setFont(new Font("Arial", Font.BOLD, 14));
+        button.setPreferredSize(new Dimension(180, 40));
     }
 
     // Método principal para probar la interfaz

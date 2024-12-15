@@ -17,9 +17,14 @@ public class Usuarios extends JFrame {
         setLocationRelativeTo(null); // Centrar ventana
         setResizable(false);
 
+        // Establecer el icono de la aplicación
+        Image icon = Toolkit.getDefaultToolkit().getImage("src/image/logo.png");
+        setIconImage(icon);
+
         // Etiqueta superior
         JLabel titleLabel = new JLabel("Usuarios Registrados", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 22));
+        titleLabel.setForeground(new Color(139, 69, 19)); // Texto marrón oscuro
         titleLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         // Modelo de tabla
@@ -42,29 +47,37 @@ public class Usuarios extends JFrame {
 
         // Colocar la tabla en un JScrollPane
         JScrollPane tableScrollPane = new JScrollPane(usuariosTable);
+        tableScrollPane.setPreferredSize(new Dimension(660, 250));
+        tableScrollPane.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2));
 
         // Botón agregar usuario
         JButton addButton = new JButton("Agregar Usuario");
-        addButton.setFont(new Font("Arial", Font.PLAIN, 16));
-        addButton.addActionListener(e -> openAddUserDialog());
+        styleButton(addButton, new Color(34, 139, 34)); // Botón verde
 
         // Botón cerrar
         JButton closeButton = new JButton("Cerrar");
-        closeButton.setFont(new Font("Arial", Font.PLAIN, 16));
-        closeButton.addActionListener(e -> dispose());
+        styleButton(closeButton, new Color(184, 70, 11)); // Botón rojo suave
 
         // Panel inferior para los botones
         JPanel buttonPanel = new JPanel();
+        buttonPanel.setBackground(new Color(245, 245, 220)); // Fondo beige
         buttonPanel.add(addButton);
         buttonPanel.add(closeButton);
 
         // Layout principal
-        setLayout(new BorderLayout());
-        add(titleLabel, BorderLayout.NORTH);
-        add(tableScrollPane, BorderLayout.CENTER);
-        add(buttonPanel, BorderLayout.SOUTH);
+        JPanel mainPanel = new JPanel(new BorderLayout(10, 10));
+        mainPanel.setBackground(new Color(245, 245, 220)); // Fondo beige
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Márgenes externos
+        mainPanel.add(titleLabel, BorderLayout.NORTH);
+        mainPanel.add(tableScrollPane, BorderLayout.CENTER);
+        mainPanel.add(buttonPanel, BorderLayout.SOUTH);
 
+        add(mainPanel);
         setVisible(true);
+
+        // Acciones de los botones
+        addButton.addActionListener(e -> openAddUserDialog());
+        closeButton.addActionListener(e -> dispose());
     }
 
     // Método para abrir el diálogo de agregar usuario
@@ -73,6 +86,7 @@ public class Usuarios extends JFrame {
         addUserDialog.setSize(400, 300);
         addUserDialog.setLocationRelativeTo(this);
         addUserDialog.setLayout(new GridBagLayout());
+        addUserDialog.getContentPane().setBackground(new Color(245, 245, 220)); // Fondo beige
 
         // Componentes del formulario
         JLabel idLabel = new JLabel("ID:");
@@ -89,7 +103,10 @@ public class Usuarios extends JFrame {
         JComboBox<String> roleComboBox = new JComboBox<>(roles);
 
         JButton saveButton = new JButton("Guardar");
+        styleButton(saveButton, new Color(34, 139, 34)); // Botón verde
+
         JButton cancelButton = new JButton("Cancelar");
+        styleButton(cancelButton, new Color(184, 70, 11)); // Botón rojo suave
 
         // Añadir componentes al diálogo
         GridBagConstraints gbc = new GridBagConstraints();
@@ -129,12 +146,13 @@ public class Usuarios extends JFrame {
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
 
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.add(saveButton);
-        buttonPanel.add(cancelButton);
-        addUserDialog.add(buttonPanel, gbc);
+        JPanel dialogButtonPanel = new JPanel();
+        dialogButtonPanel.setBackground(new Color(245, 245, 220)); // Fondo beige
+        dialogButtonPanel.add(saveButton);
+        dialogButtonPanel.add(cancelButton);
+        addUserDialog.add(dialogButtonPanel, gbc);
 
-        // Acciones de los botones
+        // Acciones de los botones en el diálogo
         saveButton.addActionListener(e -> {
             String id = idField.getText().trim();
             String username = usernameField.getText().trim();
@@ -152,6 +170,15 @@ public class Usuarios extends JFrame {
         cancelButton.addActionListener(e -> addUserDialog.dispose());
 
         addUserDialog.setVisible(true);
+    }
+
+    // Método para estilizar botones
+    private static void styleButton(JButton button, Color color) {
+        button.setBackground(color);
+        button.setForeground(Color.WHITE);
+        button.setFocusPainted(false);
+        button.setFont(new Font("Arial", Font.BOLD, 14));
+        button.setPreferredSize(new Dimension(120, 30));
     }
 
     // Método para probar la clase de forma aislada

@@ -15,20 +15,36 @@ public class Inventario extends JFrame {
         setLocationRelativeTo(null); // Centrar ventana
         setResizable(false);
 
+        // Establecer el icono de la aplicación
+        Image icon = Toolkit.getDefaultToolkit().getImage("src/image/logo.png");
+        setIconImage(icon);
+
         // Panel principal
         JPanel mainPanel = new JPanel(new BorderLayout(10, 10));
+        mainPanel.setBackground(new Color(245, 245, 220)); // Fondo beige
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Márgenes externos
 
         // Tabla de productos
         String[] columnas = {"ID", "Nombre", "Cantidad", "Precio Unitario"};
         DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0);
         JTable productosTable = new JTable(modeloTabla);
+        productosTable.setRowHeight(30); // Altura de las filas
+        productosTable.setFont(new Font("Arial", Font.PLAIN, 14));
         JScrollPane tableScrollPane = new JScrollPane(productosTable);
+        tableScrollPane.setPreferredSize(new Dimension(760, 450));
+        tableScrollPane.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2));
 
         // Panel inferior: Botones de acción
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
+        buttonPanel.setBackground(new Color(245, 245, 220)); // Fondo beige
         JButton agregarButton = new JButton("Agregar Producto");
         JButton modificarButton = new JButton("Modificar Producto");
         JButton eliminarButton = new JButton("Eliminar Producto");
+
+        // Estilizar botones
+        styleButton(agregarButton, new Color(34, 139, 34)); // Botón verde
+        styleButton(modificarButton, new Color(184, 134, 11)); // Botón marrón
+        styleButton(eliminarButton, new Color(184, 70, 11)); // Botón rojo suave
 
         // Agregar botones al panel
         buttonPanel.add(agregarButton);
@@ -131,6 +147,15 @@ public class Inventario extends JFrame {
         for (Object[] fila : datos) {
             modeloTabla.addRow(fila);
         }
+    }
+
+    // Método para estilizar botones
+    private static void styleButton(JButton button, Color color) {
+        button.setBackground(color);
+        button.setForeground(Color.WHITE);
+        button.setFocusPainted(false);
+        button.setFont(new Font("Arial", Font.BOLD, 14));
+        button.setPreferredSize(new Dimension(180, 40));
     }
 
     // Método para probar la clase de forma aislada

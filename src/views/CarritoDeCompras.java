@@ -6,7 +6,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class CarritoDeCompras {
 
-    public CarritoDeCompras () {
+    public CarritoDeCompras() {
         // Crear la ventana principal
         JFrame frame = new JFrame("Carrito de Compras");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -14,9 +14,14 @@ public class CarritoDeCompras {
         frame.setLocationRelativeTo(null); // Centrar ventana
         frame.setLayout(new BorderLayout(20, 20));
 
+        // Establecer el icono de la aplicación
+        Image icon = Toolkit.getDefaultToolkit().getImage("src/image/logo.png");
+        frame.setIconImage(icon);
+
         // Panel principal con margen para centrado
         JPanel mainPanel = new JPanel(new BorderLayout(10, 10));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Márgenes exteriores
+        mainPanel.setBackground(new Color(245, 245, 220)); // Fondo beige
         frame.add(mainPanel, BorderLayout.CENTER);
 
         // Crear el modelo y la tabla del carrito
@@ -40,14 +45,17 @@ public class CarritoDeCompras {
         // Etiqueta del total
         JLabel totalLabel = new JLabel("Total: $13.25", SwingConstants.RIGHT);
         totalLabel.setFont(new Font("Arial", Font.BOLD, 18));
+        totalLabel.setForeground(new Color(139, 69, 19)); // Texto marrón oscuro
         updateTotal(tableModel, totalLabel);
 
         // Panel inferior con botones y total
         JPanel bottomPanel = new JPanel(new BorderLayout());
         bottomPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
+        bottomPanel.setBackground(new Color(245, 245, 220)); // Fondo beige
 
         // Botones de acción
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 0));
+        buttonPanel.setBackground(new Color(245, 245, 220)); // Fondo beige
 
         JButton deleteButton = new JButton("Eliminar Producto");
         styleButton(deleteButton, new Color(184, 70, 11)); // Botón rojo suave
@@ -113,5 +121,10 @@ public class CarritoDeCompras {
         button.setFocusPainted(false);
         button.setFont(new Font("Arial", Font.BOLD, 14));
         button.setPreferredSize(new Dimension(180, 40));
+    }
+
+    // Método principal para probar la clase de forma aislada
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(CarritoDeCompras::new);
     }
 }
