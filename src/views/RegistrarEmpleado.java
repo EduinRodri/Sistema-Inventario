@@ -14,9 +14,14 @@ public class RegistrarEmpleado extends JFrame {
         setLocationRelativeTo(null); // Centrar ventana
         setResizable(false);
 
+        // Establecer el icono de la aplicación
+        Image icon = Toolkit.getDefaultToolkit().getImage("src/image/logo.png");
+        setIconImage(icon);
+
         // Panel principal
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new GridBagLayout());
+        mainPanel.setBackground(new Color(245, 245, 220)); // Fondo beige
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -24,23 +29,28 @@ public class RegistrarEmpleado extends JFrame {
         // Etiqueta del título
         JLabel titleLabel = new JLabel("Registrar Nuevo Empleado", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        titleLabel.setForeground(new Color(139, 69, 19)); // Texto marrón oscuro
         titleLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         // Campos del formulario
         JLabel nameLabel = new JLabel("Nombre:");
+        nameLabel.setForeground(new Color(139, 69, 19)); // Texto marrón oscuro
         JTextField nameField = new JTextField(20);
         nameField.setToolTipText("Ingrese el nombre del empleado");
 
         JLabel passwordLabel = new JLabel("Contraseña:");
+        passwordLabel.setForeground(new Color(139, 69, 19)); // Texto marrón oscuro
         JPasswordField passwordField = new JPasswordField(20);
         passwordField.setToolTipText("Ingrese la contraseña del empleado");
 
         JLabel salaryLabel = new JLabel("Salario:");
+        salaryLabel.setForeground(new Color(139, 69, 19)); // Texto marrón oscuro
         JTextField salaryField = new JTextField(20);
         salaryField.setToolTipText("Ingrese el salario del empleado");
 
         // Botones
         JButton registerButton = new JButton("Registrar");
+        styleButton(registerButton, new Color(34, 139, 34)); // Botón verde
         registerButton.setFont(new Font("Arial", Font.PLAIN, 16));
         registerButton.addActionListener(e -> {
             String nombre = nameField.getText().trim();
@@ -56,6 +66,7 @@ public class RegistrarEmpleado extends JFrame {
         });
 
         JButton cancelButton = new JButton("Cancelar");
+        styleButton(cancelButton, new Color(184, 70, 11)); // Botón rojo suave
         cancelButton.setFont(new Font("Arial", Font.PLAIN, 16));
         cancelButton.addActionListener(e -> dispose());
 
@@ -100,6 +111,15 @@ public class RegistrarEmpleado extends JFrame {
         add(mainPanel);
 
         setVisible(true);
+    }
+
+    // Método para estilizar botones
+    private static void styleButton(JButton button, Color color) {
+        button.setBackground(color);
+        button.setForeground(Color.WHITE);
+        button.setFocusPainted(false);
+        button.setFont(new Font("Arial", Font.BOLD, 14));
+        button.setPreferredSize(new Dimension(120, 30));
     }
 
     // Método para probar la clase de forma aislada
