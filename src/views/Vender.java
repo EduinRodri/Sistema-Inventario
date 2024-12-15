@@ -9,55 +9,49 @@ import callbacks.callbackString;
 
 public class Vender extends JFrame {
     
-    // Elementos de la interfaz
     private JComboBox<String> comboProductos;
     private JTextField cantidadField, precioUnitarioField, totalVentaField;
     private JButton registrarVentaButton;
 
     public Vender(callbackString callback) {
-        // Configuración del JFrame
         setTitle("Vender Producto");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(450, 350);
-        setLocationRelativeTo(null); // Centrar ventana
+        setLocationRelativeTo(null);
         setResizable(false);
 
-        // Establecer el icono de la aplicación
         Image icon = Toolkit.getDefaultToolkit().getImage("src/image/logo.png");
         setIconImage(icon);
 
-        // Panel principal con GridBagLayout
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 10, 10, 10); // Margen alrededor de cada componente
-        mainPanel.setBackground(new Color(245, 245, 220)); // Fondo beige
+        gbc.insets = new Insets(10, 10, 10, 10);
+        mainPanel.setBackground(new Color(245, 245, 220));
 
-        // Crear los componentes
         JLabel productoLabel = new JLabel("Seleccionar Producto:");
         comboProductos = new JComboBox<>(new String[] {"Producto A", "Producto B", "Producto C"});
-        productoLabel.setForeground(new Color(139, 69, 19)); // Texto marrón oscuro
+        productoLabel.setForeground(new Color(139, 69, 19));
         comboProductos.setBackground(Color.WHITE);
         comboProductos.setForeground(Color.BLACK);
         
         JLabel cantidadLabel = new JLabel("Cantidad:");
         cantidadField = new JTextField(10);
-        cantidadLabel.setForeground(new Color(139, 69, 19)); // Texto marrón oscuro
+        cantidadLabel.setForeground(new Color(139, 69, 19));
 
         JLabel precioUnitarioLabel = new JLabel("Precio Unitario:");
         precioUnitarioField = new JTextField(10);
-        precioUnitarioField.setEditable(false);  // No editable, solo visualización
-        precioUnitarioLabel.setForeground(new Color(139, 69, 19)); // Texto marrón oscuro
+        precioUnitarioField.setEditable(false);
+        precioUnitarioLabel.setForeground(new Color(139, 69, 19));
 
         JLabel totalLabel = new JLabel("Total de la Venta:");
         totalVentaField = new JTextField(10);
-        totalVentaField.setEditable(false);  // No editable, se calcula automáticamente
-        totalLabel.setForeground(new Color(139, 69, 19)); // Texto marrón oscuro
+        totalVentaField.setEditable(false);
+        totalLabel.setForeground(new Color(139, 69, 19));
 
         registrarVentaButton = new JButton("Registrar Venta");
-        styleButton(registrarVentaButton, new Color(34, 139, 34)); // Botón verde
+        styleButton(registrarVentaButton, new Color(34, 139, 34));
 
-        // Añadir componentes al panel con GridBagLayout
         gbc.gridx = 0; gbc.gridy = 0;
         mainPanel.add(productoLabel, gbc);
         gbc.gridx = 1;
@@ -83,7 +77,6 @@ public class Vender extends JFrame {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         mainPanel.add(registrarVentaButton, gbc);
 
-        // Configurar la acción del botón de registrar venta
         registrarVentaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -91,26 +84,22 @@ public class Vender extends JFrame {
             }
         });
 
-        // Panel para el título
         JPanel titlePanel = new JPanel();
-        titlePanel.setBackground(new Color(245, 245, 220)); // Fondo beige
+        titlePanel.setBackground(new Color(245, 245, 220));
         JLabel titleLabel = new JLabel("Registrar Venta", JLabel.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
-        titleLabel.setForeground(new Color(139, 69, 19)); // Texto marrón oscuro
+        titleLabel.setForeground(new Color(139, 69, 19));
         titlePanel.add(titleLabel);
 
-        // Añadir el título y el panel principal
         add(titlePanel, BorderLayout.NORTH);
         add(mainPanel, BorderLayout.CENTER);
 
         setVisible(true);
 
-        // Inicializar precio unitario basado en el producto seleccionado
         actualizarPrecioUnitario();
         comboProductos.addActionListener(e -> actualizarPrecioUnitario());
     }
 
-    // Método para actualizar el precio unitario dependiendo del producto seleccionado
     private void actualizarPrecioUnitario() {
         String productoSeleccionado = (String) comboProductos.getSelectedItem();
         switch (productoSeleccionado) {
@@ -127,7 +116,6 @@ public class Vender extends JFrame {
         calcularTotalVenta();
     }
 
-    // Método para calcular el total de la venta
     private void calcularTotalVenta() {
         try {
             int cantidad = Integer.parseInt(cantidadField.getText());
@@ -139,25 +127,21 @@ public class Vender extends JFrame {
         }
     }
 
-    // Método para registrar la venta (aquí solo mostramos un mensaje de confirmación)
     private void registrarVenta() {
         String producto = (String) comboProductos.getSelectedItem();
         String cantidad = cantidadField.getText();
         String total = totalVentaField.getText();
 
-        // Mostrar confirmación (en un sistema real, aquí se guardaría la venta)
         JOptionPane.showMessageDialog(this, 
             "Venta registrada:\nProducto: " + producto +
             "\nCantidad: " + cantidad +
             "\nTotal: $" + total, 
             "Venta Exitosa", JOptionPane.INFORMATION_MESSAGE);
 
-        // Limpiar campos después de registrar la venta
         cantidadField.setText("");
         totalVentaField.setText("0.00");
     }
 
-    // Método para estilizar botones
     private static void styleButton(JButton button, Color color) {
         button.setBackground(color);
         button.setForeground(Color.WHITE);
@@ -166,7 +150,6 @@ public class Vender extends JFrame {
         button.setPreferredSize(new Dimension(180, 40));
     }
 
-    // Método principal para probar la interfaz
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new Vender(null));
     }

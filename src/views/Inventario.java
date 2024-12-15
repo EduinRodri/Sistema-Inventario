@@ -8,57 +8,47 @@ import javax.swing.table.DefaultTableModel;
 public class Inventario extends JFrame {
 
     public Inventario(callbackString callback) {
-        // Configuración del JFrame
         setTitle("Gestión de Inventario");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(800, 600);
-        setLocationRelativeTo(null); // Centrar ventana
+        setLocationRelativeTo(null);
         setResizable(false);
 
-        // Establecer el icono de la aplicación
         Image icon = Toolkit.getDefaultToolkit().getImage("src/image/logo.png");
         setIconImage(icon);
 
-        // Panel principal
         JPanel mainPanel = new JPanel(new BorderLayout(10, 10));
-        mainPanel.setBackground(new Color(245, 245, 220)); // Fondo beige
-        mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Márgenes externos
+        mainPanel.setBackground(new Color(245, 245, 220));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        // Tabla de productos
         String[] columnas = {"ID", "Nombre", "Cantidad", "Precio Unitario"};
         DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0);
         JTable productosTable = new JTable(modeloTabla);
-        productosTable.setRowHeight(30); // Altura de las filas
+        productosTable.setRowHeight(30);
         productosTable.setFont(new Font("Arial", Font.PLAIN, 14));
         JScrollPane tableScrollPane = new JScrollPane(productosTable);
         tableScrollPane.setPreferredSize(new Dimension(760, 450));
         tableScrollPane.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2));
 
-        // Panel inferior: Botones de acción
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
-        buttonPanel.setBackground(new Color(245, 245, 220)); // Fondo beige
+        buttonPanel.setBackground(new Color(245, 245, 220));
         JButton agregarButton = new JButton("Agregar Producto");
         JButton modificarButton = new JButton("Modificar Producto");
         JButton eliminarButton = new JButton("Eliminar Producto");
 
-        // Estilizar botones
-        styleButton(agregarButton, new Color(34, 139, 34)); // Botón verde
-        styleButton(modificarButton, new Color(184, 134, 11)); // Botón marrón
-        styleButton(eliminarButton, new Color(184, 70, 11)); // Botón rojo suave
+        styleButton(agregarButton, new Color(34, 139, 34));
+        styleButton(modificarButton, new Color(184, 134, 11));
+        styleButton(eliminarButton, new Color(184, 70, 11));
 
-        // Agregar botones al panel
         buttonPanel.add(agregarButton);
         buttonPanel.add(modificarButton);
         buttonPanel.add(eliminarButton);
 
-        // Añadir componentes al panel principal
         mainPanel.add(tableScrollPane, BorderLayout.CENTER);
         mainPanel.add(buttonPanel, BorderLayout.SOUTH);
 
-        // Simulación de datos iniciales
         agregarDatosSimulados(modeloTabla);
 
-        // Acción: Agregar Producto
         agregarButton.addActionListener(e -> {
             JTextField idField = new JTextField();
             JTextField nombreField = new JTextField();
@@ -86,7 +76,6 @@ public class Inventario extends JFrame {
             }
         });
 
-        // Acción: Modificar Producto
         modificarButton.addActionListener(e -> {
             int selectedRow = productosTable.getSelectedRow();
             if (selectedRow == -1) {
@@ -119,7 +108,6 @@ public class Inventario extends JFrame {
             }
         });
 
-        // Acción: Eliminar Producto
         eliminarButton.addActionListener(e -> {
             int selectedRow = productosTable.getSelectedRow();
             if (selectedRow == -1) {
@@ -132,12 +120,10 @@ public class Inventario extends JFrame {
             }
         });
 
-        // Añadir el panel principal al JFrame
         add(mainPanel);
         setVisible(true);
     }
 
-    // Método para agregar datos simulados
     private void agregarDatosSimulados(DefaultTableModel modeloTabla) {
         Object[][] datos = {
                 {"001", "Producto A", 50, 10.00},
@@ -149,7 +135,6 @@ public class Inventario extends JFrame {
         }
     }
 
-    // Método para estilizar botones
     private static void styleButton(JButton button, Color color) {
         button.setBackground(color);
         button.setForeground(Color.WHITE);
@@ -158,7 +143,6 @@ public class Inventario extends JFrame {
         button.setPreferredSize(new Dimension(180, 40));
     }
 
-    // Método para probar la clase de forma aislada
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new Inventario(null));
     }

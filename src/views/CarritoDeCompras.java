@@ -7,64 +7,55 @@ import javax.swing.table.DefaultTableModel;
 public class CarritoDeCompras {
 
     public CarritoDeCompras() {
-        // Crear la ventana principal
         JFrame frame = new JFrame("Carrito de Compras");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(700, 500);
-        frame.setLocationRelativeTo(null); // Centrar ventana
+        frame.setLocationRelativeTo(null);
         frame.setLayout(new BorderLayout(20, 20));
 
-        // Establecer el icono de la aplicación
         Image icon = Toolkit.getDefaultToolkit().getImage("src/image/logo.png");
         frame.setIconImage(icon);
 
-        // Panel principal con margen para centrado
         JPanel mainPanel = new JPanel(new BorderLayout(10, 10));
-        mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Márgenes exteriores
-        mainPanel.setBackground(new Color(245, 245, 220)); // Fondo beige
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        mainPanel.setBackground(new Color(245, 245, 220));
         frame.add(mainPanel, BorderLayout.CENTER);
 
-        // Crear el modelo y la tabla del carrito
         String[] columnNames = {"Producto", "Precio", "Cantidad", "Subtotal"};
         DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
         JTable table = new JTable(tableModel);
-        table.setRowHeight(30); // Altura de las filas
+        table.setRowHeight(30);
         table.setFont(new Font("Arial", Font.PLAIN, 14));
         table.setFillsViewportHeight(true);
 
-        // Añadir datos de ejemplo
         tableModel.addRow(new Object[]{"Pan Integral", 2.5, 2, 5.0});
         tableModel.addRow(new Object[]{"Pan Dulce", 1.75, 3, 5.25});
         tableModel.addRow(new Object[]{"Croissant", 3.0, 1, 3.0});
 
-        // Scroll para la tabla
         JScrollPane tableScroll = new JScrollPane(table);
         tableScroll.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2));
         mainPanel.add(tableScroll, BorderLayout.CENTER);
 
-        // Etiqueta del total
         JLabel totalLabel = new JLabel("Total: $13.25", SwingConstants.RIGHT);
         totalLabel.setFont(new Font("Arial", Font.BOLD, 18));
-        totalLabel.setForeground(new Color(139, 69, 19)); // Texto marrón oscuro
+        totalLabel.setForeground(new Color(139, 69, 19));
         updateTotal(tableModel, totalLabel);
 
-        // Panel inferior con botones y total
         JPanel bottomPanel = new JPanel(new BorderLayout());
         bottomPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
-        bottomPanel.setBackground(new Color(245, 245, 220)); // Fondo beige
+        bottomPanel.setBackground(new Color(245, 245, 220));
 
-        // Botones de acción
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 0));
-        buttonPanel.setBackground(new Color(245, 245, 220)); // Fondo beige
+        buttonPanel.setBackground(new Color(245, 245, 220));
 
         JButton deleteButton = new JButton("Eliminar Producto");
-        styleButton(deleteButton, new Color(184, 70, 11)); // Botón rojo suave
+        styleButton(deleteButton, new Color(184, 70, 11));
 
         JButton checkoutButton = new JButton("Finalizar Compra");
-        styleButton(checkoutButton, new Color(34, 139, 34)); // Botón verde
+        styleButton(checkoutButton, new Color(34, 139, 34));
 
         JButton cancelButton = new JButton("Cancelar");
-        styleButton(cancelButton, new Color(105, 105, 105)); // Botón gris oscuro
+        styleButton(cancelButton, new Color(105, 105, 105));
 
         buttonPanel.add(deleteButton);
         buttonPanel.add(checkoutButton);
@@ -75,7 +66,6 @@ public class CarritoDeCompras {
 
         mainPanel.add(bottomPanel, BorderLayout.SOUTH);
 
-        // Acción del botón "Eliminar Producto"
         deleteButton.addActionListener(e -> {
             int selectedRow = table.getSelectedRow();
             if (selectedRow != -1) {
@@ -86,24 +76,20 @@ public class CarritoDeCompras {
             }
         });
 
-        // Acción del botón "Finalizar Compra"
         checkoutButton.addActionListener(e -> {
             JOptionPane.showMessageDialog(frame, "¡Compra finalizada! Gracias por su preferencia.", "Compra Exitosa", JOptionPane.INFORMATION_MESSAGE);
         });
 
-        // Acción del botón "Cancelar"
         cancelButton.addActionListener(e -> {
             int option = JOptionPane.showConfirmDialog(frame, "¿Está seguro que desea cancelar?", "Cancelar Compra", JOptionPane.YES_NO_OPTION);
             if (option == JOptionPane.YES_OPTION) {
-                frame.dispose(); // Cierra la ventana
+                frame.dispose();
             }
         });
 
-        // Mostrar la ventana
         frame.setVisible(true);
     }
 
-    // Método para actualizar el total
     private static void updateTotal(DefaultTableModel tableModel, JLabel totalLabel) {
         double total = 0.0;
         for (int i = 0; i < tableModel.getRowCount(); i++) {
@@ -114,7 +100,6 @@ public class CarritoDeCompras {
         totalLabel.setText("Total: $" + String.format("%.2f", total));
     }
 
-    // Método para estilizar botones
     private static void styleButton(JButton button, Color color) {
         button.setBackground(color);
         button.setForeground(Color.WHITE);
@@ -123,7 +108,6 @@ public class CarritoDeCompras {
         button.setPreferredSize(new Dimension(180, 40));
     }
 
-    // Método principal para probar la clase de forma aislada
     public static void main(String[] args) {
         SwingUtilities.invokeLater(CarritoDeCompras::new);
     }

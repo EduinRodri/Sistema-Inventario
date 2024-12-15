@@ -10,24 +10,20 @@ public class Usuarios extends JFrame {
     private DefaultTableModel tableModel;
 
     public Usuarios(callbackString callback) {
-        // Configuración del JFrame
         setTitle("Gestión de Usuarios");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(700, 400);
-        setLocationRelativeTo(null); // Centrar ventana
+        setLocationRelativeTo(null);
         setResizable(false);
 
-        // Establecer el icono de la aplicación
         Image icon = Toolkit.getDefaultToolkit().getImage("src/image/logo.png");
         setIconImage(icon);
 
-        // Etiqueta superior
         JLabel titleLabel = new JLabel("Usuarios Registrados", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 22));
-        titleLabel.setForeground(new Color(139, 69, 19)); // Texto marrón oscuro
+        titleLabel.setForeground(new Color(139, 69, 19));
         titleLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        // Modelo de tabla
         String[] columnNames = {"ID", "Nombre de Usuario", "Correo Electrónico", "Rol"};
         Object[][] data = {
                 {"1", "admin", "admin@ejemplo.com", "Administrador"},
@@ -39,35 +35,29 @@ public class Usuarios extends JFrame {
         tableModel = new DefaultTableModel(data, columnNames);
         usuariosTable = new JTable(tableModel);
 
-        // Configuración de la tabla
         usuariosTable.setFont(new Font("Arial", Font.PLAIN, 14));
         usuariosTable.setRowHeight(25);
         usuariosTable.getTableHeader().setFont(new Font("Arial", Font.BOLD, 14));
-        usuariosTable.setEnabled(false); // Tabla no editable
+        usuariosTable.setEnabled(false);
 
-        // Colocar la tabla en un JScrollPane
         JScrollPane tableScrollPane = new JScrollPane(usuariosTable);
         tableScrollPane.setPreferredSize(new Dimension(660, 250));
         tableScrollPane.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2));
 
-        // Botón agregar usuario
         JButton addButton = new JButton("Agregar Usuario");
-        styleButton(addButton, new Color(34, 139, 34)); // Botón verde
+        styleButton(addButton, new Color(34, 139, 34));
 
-        // Botón cerrar
         JButton closeButton = new JButton("Cerrar");
-        styleButton(closeButton, new Color(184, 70, 11)); // Botón rojo suave
+        styleButton(closeButton, new Color(184, 70, 11));
 
-        // Panel inferior para los botones
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setBackground(new Color(245, 245, 220)); // Fondo beige
+        buttonPanel.setBackground(new Color(245, 245, 220));
         buttonPanel.add(addButton);
         buttonPanel.add(closeButton);
 
-        // Layout principal
         JPanel mainPanel = new JPanel(new BorderLayout(10, 10));
-        mainPanel.setBackground(new Color(245, 245, 220)); // Fondo beige
-        mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Márgenes externos
+        mainPanel.setBackground(new Color(245, 245, 220));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         mainPanel.add(titleLabel, BorderLayout.NORTH);
         mainPanel.add(tableScrollPane, BorderLayout.CENTER);
         mainPanel.add(buttonPanel, BorderLayout.SOUTH);
@@ -75,20 +65,17 @@ public class Usuarios extends JFrame {
         add(mainPanel);
         setVisible(true);
 
-        // Acciones de los botones
         addButton.addActionListener(e -> openAddUserDialog());
         closeButton.addActionListener(e -> dispose());
     }
 
-    // Método para abrir el diálogo de agregar usuario
     private void openAddUserDialog() {
         JDialog addUserDialog = new JDialog(this, "Agregar Usuario", true);
         addUserDialog.setSize(400, 300);
         addUserDialog.setLocationRelativeTo(this);
         addUserDialog.setLayout(new GridBagLayout());
-        addUserDialog.getContentPane().setBackground(new Color(245, 245, 220)); // Fondo beige
+        addUserDialog.getContentPane().setBackground(new Color(245, 245, 220));
 
-        // Componentes del formulario
         JLabel idLabel = new JLabel("ID:");
         JTextField idField = new JTextField(15);
 
@@ -103,12 +90,11 @@ public class Usuarios extends JFrame {
         JComboBox<String> roleComboBox = new JComboBox<>(roles);
 
         JButton saveButton = new JButton("Guardar");
-        styleButton(saveButton, new Color(34, 139, 34)); // Botón verde
+        styleButton(saveButton, new Color(34, 139, 34));
 
         JButton cancelButton = new JButton("Cancelar");
-        styleButton(cancelButton, new Color(184, 70, 11)); // Botón rojo suave
+        styleButton(cancelButton, new Color(184, 70, 11));
 
-        // Añadir componentes al diálogo
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -147,12 +133,11 @@ public class Usuarios extends JFrame {
         gbc.anchor = GridBagConstraints.CENTER;
 
         JPanel dialogButtonPanel = new JPanel();
-        dialogButtonPanel.setBackground(new Color(245, 245, 220)); // Fondo beige
+        dialogButtonPanel.setBackground(new Color(245, 245, 220));
         dialogButtonPanel.add(saveButton);
         dialogButtonPanel.add(cancelButton);
         addUserDialog.add(dialogButtonPanel, gbc);
 
-        // Acciones de los botones en el diálogo
         saveButton.addActionListener(e -> {
             String id = idField.getText().trim();
             String username = usernameField.getText().trim();
@@ -172,7 +157,6 @@ public class Usuarios extends JFrame {
         addUserDialog.setVisible(true);
     }
 
-    // Método para estilizar botones
     private static void styleButton(JButton button, Color color) {
         button.setBackground(color);
         button.setForeground(Color.WHITE);
@@ -181,7 +165,6 @@ public class Usuarios extends JFrame {
         button.setPreferredSize(new Dimension(120, 30));
     }
 
-    // Método para probar la clase de forma aislada
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new Usuarios(null));
     }

@@ -11,33 +11,27 @@ public class Registrarse {
     ArrayList<String> params = new ArrayList<>();
     
     public Registrarse (CallbackArryList callback) {
-        // Crear ventana principal
         JFrame frame = new JFrame("Registro");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 400);
-        frame.setLocationRelativeTo(null); // Centrar ventana
+        frame.setLocationRelativeTo(null);
         frame.setResizable(false);
 
-        // Establecer el icono de la aplicación
         Image icon = Toolkit.getDefaultToolkit().getImage("src/image/logo.png");
         frame.setIconImage(icon);
 
-        // Panel principal
         JPanel mainPanel = new JPanel(new BorderLayout());
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        mainPanel.setBackground(new Color(245, 245, 220)); // Fondo beige
+        mainPanel.setBackground(new Color(245, 245, 220));
 
-        // Título
         JLabel titleLabel = new JLabel("Registrarse", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
-        titleLabel.setForeground(new Color(139, 69, 19)); // Texto marrón oscuro
+        titleLabel.setForeground(new Color(139, 69, 19));
         mainPanel.add(titleLabel, BorderLayout.NORTH);
 
-        // Panel de formulario
-        JPanel formPanel = new JPanel(new GridLayout(6, 1, 10, 10)); // 6 filas para campos y checkbox
-        formPanel.setBackground(new Color(245, 245, 220)); // Fondo beige
+        JPanel formPanel = new JPanel(new GridLayout(6, 1, 10, 10));
+        formPanel.setBackground(new Color(245, 245, 220));
 
-        // Campos de entrada
         JTextField userField = new JTextField();
         setPlaceholder(userField, "Usuario");
 
@@ -47,16 +41,13 @@ public class Registrarse {
         JPasswordField confirmPassField = new JPasswordField();
         setPlaceholder(confirmPassField, "Confirmar Contraseña");
 
-        // Checkbox para mostrar contraseña
         JCheckBox showPasswordCheckBox = new JCheckBox("Mostrar Contraseña");
-        showPasswordCheckBox.setBackground(new Color(245, 245, 220)); // Fondo beige
-        showPasswordCheckBox.setForeground(new Color(139, 69, 19)); // Texto marrón oscuro
+        showPasswordCheckBox.setBackground(new Color(245, 245, 220));
+        showPasswordCheckBox.setForeground(new Color(139, 69, 19));
 
-        // Botón Registrarse
         JButton registerButton = new JButton("Registrarse");
-        styleButton(registerButton, new Color(34, 139, 34)); // Botón verde
+        styleButton(registerButton, new Color(34, 139, 34));
 
-        // Agregar componentes al panel de formulario
         formPanel.add(userField);
         formPanel.add(passField);
         formPanel.add(confirmPassField);
@@ -65,7 +56,6 @@ public class Registrarse {
 
         mainPanel.add(formPanel, BorderLayout.CENTER);
 
-        // Acción del checkbox para mostrar/ocultar contraseña
         showPasswordCheckBox.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
@@ -75,13 +65,11 @@ public class Registrarse {
             }
         });
 
-        // Acción del botón "Registrarse"
         registerButton.addActionListener(e -> {
             String usuario = userField.getText();
             String contrasena = new String(passField.getPassword());
             String confirmarContrasena = new String(confirmPassField.getPassword());
 
-            // Validación básica
             if (usuario.isEmpty() || contrasena.isEmpty() || confirmarContrasena.isEmpty() ||
                     usuario.equals("Usuario") || contrasena.equals("Contraseña") || confirmarContrasena.equals("Confirmar Contraseña")) {
                 JOptionPane.showMessageDialog(frame, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -96,12 +84,10 @@ public class Registrarse {
             }
         });
 
-        // Agregar el panel principal a la ventana
         frame.add(mainPanel);
         frame.setVisible(true);
     }
 
-    // Método para estilizar botones
     private static void styleButton(JButton button, Color color) {
         button.setBackground(color);
         button.setForeground(Color.WHITE);
@@ -110,7 +96,6 @@ public class Registrarse {
         button.setPreferredSize(new Dimension(120, 30));
     }
 
-    // Método para agregar un placeholder a JTextField y JPasswordField
     private static void setPlaceholder(JTextField field, String placeholder) {
         field.setText(placeholder);
         field.setForeground(Color.GRAY);
@@ -142,7 +127,7 @@ public class Registrarse {
                 if (String.valueOf(field.getPassword()).equals(placeholder)) {
                     field.setText("");
                     field.setForeground(Color.BLACK);
-                    field.setEchoChar('●'); // Ocultar caracteres
+                    field.setEchoChar('●');
                 }
             }
 
@@ -156,7 +141,6 @@ public class Registrarse {
         });
     }
 
-    // Método principal para probar la clase de forma aislada
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new Registrarse(null));
     }
