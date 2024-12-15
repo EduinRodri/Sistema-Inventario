@@ -3,6 +3,7 @@ package views;
 import javax.swing.*;
 
 import callbacks.CallbackArryList;
+import callbacks.callbackString;
 
 import java.awt.*;
 import java.awt.event.FocusEvent;
@@ -15,7 +16,7 @@ public class LoginApp {
     private boolean aceptado = false;
     private CallbackArryList TheCallback;
     public JFrame Frame;
-    public LoginApp () {
+    public LoginApp (callbackString callback) {
         // Crear ventana principal
         JFrame frame = new JFrame("Login");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -76,6 +77,8 @@ public class LoginApp {
             } else {
                 nombre = usuario;
                 pass = contrasena;
+                userField.setText("");
+                passField.setText("");
                 if (aceptado) {
                     ingresar(TheCallback);
                 }
@@ -84,7 +87,7 @@ public class LoginApp {
 
         // Acción del botón "Registrarse"
         registerButton.addActionListener(e -> {
-            JOptionPane.showMessageDialog(frame, "Redirigiendo a la página de registro...", "Registro", JOptionPane.INFORMATION_MESSAGE);
+            callback.ejecutar("registro");
         });
 
         // Agregar el panel principal a la ventana
@@ -98,6 +101,7 @@ public class LoginApp {
             array.add(nombre);
             array.add(pass);
             callback.ejecutar(array);
+
         } else {
             TheCallback = callback;
             aceptado = true;

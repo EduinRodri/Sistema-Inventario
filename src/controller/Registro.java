@@ -1,10 +1,10 @@
 package controller;
 
 import callbacks.callbackUsuario;
-
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import views.LoginApp;
+import views.Registrarse;
 
 public class Registro {
     private ArrayList<Usuario> usuarios = new ArrayList<>();
@@ -37,8 +37,26 @@ public class Registro {
         return isLoged;
     }
 
+    public void registrarse () {
+        form.Frame.setVisible(false);
+        Registrarse frame = new Registrarse(e -> {
+            if (e.size() == 3) {
+                String nombre = e.get(0);
+                String pass = e.get(1);
+                String rol = e.get(2);
+
+                usuarios.add(new Usuario(nombre, pass, rol, 0));
+                form.Frame.setVisible(true);
+            }
+        });
+    }
+
     public Registro (callbackUsuario callback) {
-        LoginApp loged = new LoginApp();
+        LoginApp loged = new LoginApp(e -> {
+            if (e.equals("registro")) {
+                registrarse();
+            }
+        });
         form = loged;
         loged.ingresar(resultado -> {
             Usuario user = login(resultado.get(0), resultado.get(1));
@@ -46,6 +64,7 @@ public class Registro {
                 JOptionPane.showMessageDialog(loged.Frame, "Usuario no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 callback.ejecutar(user);
+                
             }
         });
     }

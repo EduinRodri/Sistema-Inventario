@@ -10,9 +10,6 @@ public class Main {
             if (resultado.equals("cerrar")) {
                 baseDatos.form.Frame.setVisible(true);
             }
-            if (resultado.equals("")) {
-                
-            }
         });
     }
 

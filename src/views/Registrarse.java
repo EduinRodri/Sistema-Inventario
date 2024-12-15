@@ -1,15 +1,15 @@
 package views;
 
-import javax.swing.*;
-
-import callbacks.callbackString;
-
+import callbacks.CallbackArryList;
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
+import javax.swing.*;
 
 public class Registrarse {
-    public Registrarse (callbackString callback) {
+    ArrayList<String> params = new ArrayList<>();
+    public Registrarse (CallbackArryList callback) {
         // Crear ventana principal
         JFrame frame = new JFrame("Registro");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -78,7 +78,11 @@ public class Registrarse {
             } else if (!contrasena.equals(confirmarContrasena)) {
                 JOptionPane.showMessageDialog(frame, "Las contraseñas no coinciden.", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(frame, "Registro exitoso, bienvenido " + usuario + "!", "Registro", JOptionPane.INFORMATION_MESSAGE);
+                params.add(usuario);
+                params.add(contrasena);
+                params.add("cliente");
+                callback.ejecutar(params);
+                frame.dispose();
             }
         });
 
