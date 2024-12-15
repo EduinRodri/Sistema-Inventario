@@ -9,7 +9,7 @@ public class CarritoDeCompras {
     public CarritoDeCompras () {
         // Crear la ventana principal
         JFrame frame = new JFrame("Carrito de Compras");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(700, 500);
         frame.setLocationRelativeTo(null); // Centrar ventana
         frame.setLayout(new BorderLayout(20, 20));

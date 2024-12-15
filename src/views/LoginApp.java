@@ -16,7 +16,8 @@ public class LoginApp {
     private boolean aceptado = false;
     private CallbackArryList TheCallback;
     public JFrame Frame;
-    public LoginApp (callbackString callback) {
+
+    public LoginApp(callbackString callback) {
         // Crear ventana principal
         JFrame frame = new JFrame("Login");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -24,19 +25,27 @@ public class LoginApp {
         frame.setLocationRelativeTo(null); // Centrar ventana
         frame.setResizable(false);
 
+        // Establecer el icono de la aplicación
+        Image icon = Toolkit.getDefaultToolkit().getImage("src/image/logo.png");
+        frame.setIconImage(icon);
+
         this.Frame = frame;
 
         // Panel principal
         JPanel mainPanel = new JPanel(new BorderLayout());
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Márgenes externos
+        mainPanel.setBackground(new Color(245, 245, 220)); // Fondo beige
 
         // Título
         JLabel titleLabel = new JLabel("Iniciar Sesión", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        titleLabel.setForeground(new Color(139, 69, 19)); // Texto marrón oscuro
         mainPanel.add(titleLabel, BorderLayout.NORTH);
 
         // Panel central con campos de texto
         JPanel formPanel = new JPanel(new GridLayout(4, 1, 10, 10)); // 4 filas, espaciado 10px
+        formPanel.setBackground(new Color(245, 245, 220)); // Fondo beige
+
         JTextField userField = new JTextField();
         setPlaceholder(userField, "Usuario");
 
@@ -50,13 +59,17 @@ public class LoginApp {
 
         // Panel inferior con botones
         JPanel buttonPanel = new JPanel(new BorderLayout());
+        buttonPanel.setBackground(new Color(245, 245, 220)); // Fondo beige
+
         JButton loginButton = new JButton("Iniciar Sesión");
-        styleButton(loginButton, new Color(34, 139, 34)); // Botón verde
+        styleButton(loginButton, new Color(184, 134, 11)); // Botón marrón
         buttonPanel.add(loginButton, BorderLayout.CENTER);
 
         // Pregunta de registro
         JPanel registerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        registerPanel.setBackground(new Color(245, 245, 220)); // Fondo beige
         JLabel registerLabel = new JLabel("¿No se ha registrado?");
+        registerLabel.setForeground(new Color(139, 69, 19)); // Texto marrón oscuro
         JButton registerButton = new JButton("Registrarse");
         styleButton(registerButton, new Color(70, 130, 180)); // Botón azul
 
@@ -95,13 +108,12 @@ public class LoginApp {
         frame.setVisible(true);
     }
 
-    public void ingresar (CallbackArryList callback) {
+    public void ingresar(CallbackArryList callback) {
         if (aceptado) {
             var array = new ArrayList<String>();
             array.add(nombre);
             array.add(pass);
             callback.ejecutar(array);
-
         } else {
             TheCallback = callback;
             aceptado = true;
@@ -167,4 +179,3 @@ public class LoginApp {
         });
     }
 }
-
