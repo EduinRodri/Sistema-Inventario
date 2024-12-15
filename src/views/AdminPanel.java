@@ -80,11 +80,11 @@ public class AdminPanel extends JFrame {
         mainPanel.add(contentLabel, BorderLayout.CENTER);
 
         // Acciones para los items del menú
-        itemUsuarios.addActionListener(e -> contentLabel.setText("Gestión de Usuarios"));
-        itemFinanzas.addActionListener(e -> contentLabel.setText("Gestión de Finanzas"));
+        itemUsuarios.addActionListener(e -> new Usuarios(null));
+        itemFinanzas.addActionListener(e -> new Finanzas(null));
         itemProveedores.addActionListener(e -> contentLabel.setText("Gestión de Proveedores"));
         itemSeguridad.addActionListener(e -> contentLabel.setText("Gestión de Seguridad"));
-        itemInventario.addActionListener(e -> contentLabel.setText("Gestión de Inventario"));
+        itemInventario.addActionListener(e -> new Inventario(null));
 
         // Acción para "Cerrar Sesión"
         itemCerrarSesion.addActionListener(e -> {
