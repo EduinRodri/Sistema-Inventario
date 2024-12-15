@@ -14,13 +14,21 @@ public class Empleado extends JFrame {
         setLocationRelativeTo(null); // Centrar ventana
         setResizable(false);
 
+        // Establecer el icono de la aplicación
+        Image icon = Toolkit.getDefaultToolkit().getImage("src/image/logo.png");
+        setIconImage(icon);
+
         // Panel principal
         JPanel mainPanel = new JPanel(new BorderLayout());
+        mainPanel.setBackground(new Color(245, 245, 220)); // Fondo beige
 
         // Crear barra de navegación
         JMenuBar menuBar = new JMenuBar();
+        menuBar.setBackground(new Color(160, 82, 45)); // Fondo marrón
 
         JMenu opcionesMenu = new JMenu("Opciones");
+        opcionesMenu.setForeground(Color.WHITE);
+
         JMenuItem cerrarSesionMenuItem = new JMenuItem("Cerrar Sesión");
         JMenuItem historialVentasMenuItem = new JMenuItem("Historial de Ventas");
         JMenuItem inventarioMenuItem = new JMenuItem("Inventario");
@@ -38,10 +46,19 @@ public class Empleado extends JFrame {
         // Panel central
         JPanel contentPanel = new JPanel();
         contentPanel.setLayout(new GridBagLayout());
+        contentPanel.setBackground(new Color(245, 245, 220)); // Fondo beige
+
         JLabel bienvenidaLabel = new JLabel("<html><h2>Bienvenido al Panel del Empleado</h2></html>");
         bienvenidaLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        bienvenidaLabel.setForeground(new Color(139, 69, 19)); // Texto marrón oscuro
 
-        contentPanel.add(bienvenidaLabel);
+        // Cargar y agregar el logo
+        ImageIcon logoIcon = new ImageIcon("src/image/logo.png");
+        JLabel logoLabel = new JLabel(logoIcon);
+        logoLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+
+        contentPanel.add(logoLabel, new GridBagConstraints());
+        contentPanel.add(bienvenidaLabel, new GridBagConstraints());
 
         // Acción de botones del menú
         cerrarSesionMenuItem.addActionListener(e -> cerrarSesion());
