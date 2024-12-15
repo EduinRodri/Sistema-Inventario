@@ -74,6 +74,7 @@ public class AdminPanel extends JFrame {
                     System.exit(0);
                 } else {
                     callback.ejecutar("cerrar");
+                    this.dispose();
                 }
             }
         });
