@@ -9,6 +9,8 @@ public class Main {
         AdminPanel frame = new AdminPanel(resultado -> {
             if (resultado.equals("cerrar")) {
                 baseDatos.form.Frame.setVisible(true);
+            }
+            if (resultado.equals("")) {
                 
             }
         });
