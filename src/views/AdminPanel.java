@@ -1,9 +1,8 @@
 package views;
 
+import callbacks.callbackString;
 import java.awt.*;
 import javax.swing.*;
-
-import callbacks.callbackString;
 
 public class AdminPanel extends JFrame {
     // Constructor
@@ -15,9 +14,21 @@ public class AdminPanel extends JFrame {
         setLocationRelativeTo(null); // Centrar ventana
         setResizable(false);
 
+        // Establecer el icono de la aplicación
+        Image icon = Toolkit.getDefaultToolkit().getImage("src/image/logo.png");
+        setIconImage(icon);
+
         // Crear barra de menú
         JMenuBar menuBar = new JMenuBar();
-        menuBar.setBackground(new Color(70, 130, 180)); // Color azul
+        menuBar.setBackground(new Color(160, 82, 45)); // Fondo marrón
+
+        // Agregar logo a la barra de menú
+        JMenu logoMenu = new JMenu(""); // Menú vacío para el logo
+        ImageIcon logoIcon = new ImageIcon("src/image/logo.png");
+        JLabel logoLabel = new JLabel(logoIcon);
+        logoLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+        logoMenu.add(logoLabel);
+        menuBar.add(logoMenu);
 
         // Opciones del menú
         JMenu menuUsuarios = new JMenu("Usuarios");
@@ -26,6 +37,14 @@ public class AdminPanel extends JFrame {
         JMenu menuSeguridad = new JMenu("Seguridad");
         JMenu menuInventario = new JMenu("Inventario");
         JMenu menuCerrarSesion = new JMenu("Cerrar Sesión");
+
+        // Establecer color del texto del menú
+        menuUsuarios.setForeground(Color.WHITE);
+        menuFinanzas.setForeground(Color.WHITE);
+        menuProveedores.setForeground(Color.WHITE);
+        menuSeguridad.setForeground(Color.WHITE);
+        menuInventario.setForeground(Color.WHITE);
+        menuCerrarSesion.setForeground(Color.WHITE);
 
         // Crear items del menú
         JMenuItem itemUsuarios = new JMenuItem("Gestión de Usuarios");
@@ -54,8 +73,10 @@ public class AdminPanel extends JFrame {
 
         // Panel principal donde se mostrará el contenido
         JPanel mainPanel = new JPanel(new BorderLayout());
-        JLabel contentLabel = new JLabel("Seleccione una opción del menú", SwingConstants.CENTER);
+        mainPanel.setBackground(new Color(245, 245, 220)); // Fondo beige
+        JLabel contentLabel = new JLabel("<html><h2>Bienvenido al Panel de Administrador</h2></html>", logoIcon, SwingConstants.CENTER);
         contentLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        contentLabel.setForeground(new Color(139, 69, 19)); // Texto marrón oscuro
         mainPanel.add(contentLabel, BorderLayout.CENTER);
 
         // Acciones para los items del menú

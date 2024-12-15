@@ -1,13 +1,12 @@
 package views;
 
-import callbacks.callbackString;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 public class CarritoDeCompras {
 
-    public CarritoDeCompras (callbackString callback) {
+    public CarritoDeCompras () {
         // Crear la ventana principal
         JFrame frame = new JFrame("Carrito de Compras");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
